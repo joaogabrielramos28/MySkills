@@ -1,7 +1,13 @@
 import React from "react";
 import { Home } from "./src/pages/Home";
+import { StatusBar } from "react-native";
 function App() {
-  return <Home />;
+  return (
+    <>
+      <StatusBar barStyle={"default"} />
+      <Home />
+    </>
+  );
 }
 
 export default App;
