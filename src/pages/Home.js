@@ -8,7 +8,6 @@ import {
   TextInput,
   Platform,
   FlatList,
-  StatusBar,
 } from "react-native";
 import { Button } from "../components/Button";
 import { SkillCard } from "../components/SkillCard";
@@ -19,7 +18,6 @@ export function Home() {
 
   useEffect(() => {
     const currentHour = new Date().getHours();
-    console.log(currentHour);
     if (currentHour < 12) {
       setGretting("Good morning");
     } else if (currentHour >= 12 && currentHour < 18) {
