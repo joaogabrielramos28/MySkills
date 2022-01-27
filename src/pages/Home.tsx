@@ -11,9 +11,15 @@ import {
 } from "react-native";
 import { Button } from "../components/Button";
 import { SkillCard } from "../components/SkillCard";
+
+interface SkillData {
+  id: string;
+  name: string;
+}
+
 export function Home() {
   const [newSkill, setNewSkill] = useState("");
-  const [mySkills, setMyskills] = useState([]);
+  const [mySkills, setMyskills] = useState<SkillData[]>([]);
   const [gretting, setGretting] = useState("");
 
   useEffect(() => {
@@ -28,7 +34,11 @@ export function Home() {
   }, []);
 
   function handleAddNewSkill() {
-    setMyskills([...mySkills, newSkill]);
+    const data: SkillData = {
+      id: String(new Date().getTime()),
+      name: newSkill,
+    };
+    setMyskills([...mySkills, data]);
   }
   return (
     <SafeAreaView style={styles.container}>
@@ -45,8 +55,8 @@ export function Home() {
       <Text style={[styles.title, { marginVertical: 50 }]}>My skills</Text>
       <FlatList
         data={mySkills}
-        keyExtractor={(item) => item}
-        renderItem={({ item }) => <SkillCard skill={item} />}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => <SkillCard skill={item.name} />}
       />
     </SafeAreaView>
   );
